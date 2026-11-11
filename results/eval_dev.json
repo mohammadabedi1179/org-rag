@@ -1,0 +1,205 @@
+{
+ "floor": 0.05,
+ "records": [
+  {
+   "id": "d01",
+   "type": "pdf_text",
+   "question": "هر کارمند تمام‌وقت در سال چند روز مرخصی استحقاقی دارد؟",
+   "reply": "۲۶ روز [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "آیین‌نامه مرخصی و مزایا.pdf، صفحه 1"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 5.0
+  },
+  {
+   "id": "d02",
+   "type": "pdf_table",
+   "question": "حق مسکن گروه شغلی سرپرست چقدر است؟",
+   "reply": "160 [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "آیین‌نامه مرخصی و مزایا.pdf، صفحه 2، جدول 1، ردیف 1 تا 4"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "id": "d03",
+   "type": "pdf_image",
+   "question": "سقف هزینه روزانه مأموریت داخل استان چقدر است؟",
+   "reply": "3500000 ریال [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "آیین‌نامه مرخصی و مزایا.pdf، صفحه 3، تصویر 1"
+   ],
+   "sql": null,
+   "notes": [
+    "4 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "id": "d04",
+   "type": "docx",
+   "question": "سقف هر خرید برای سرپرست چقدر است؟",
+   "reply": "150 میلیون ریال [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "دستورالعمل خرید.docx، بخش «سقف اختیارات خرید»، جدول 1، ردیف 1 تا 3"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "id": "d05",
+   "type": "xlsx",
+   "question": "بودجه مصوب ۱۴۰۴ واحد منابع انسانی چقدر است؟",
+   "reply": "7600 میلیون ریال [2]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "بودجه و قراردادها ۱۴۰۴.xlsx، برگه «بودجه واحدها»، ردیف 2 تا 5"
+   ],
+   "sql": "SELECT p.budget_million_rial, p.id\nFROM projects p\nJOIN departments d ON p.department_id = d.id\nWHERE d.name = 'منابع انسانی'",
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 6.4
+  },
+  {
+   "id": "d06",
+   "type": "database",
+   "question": "مدیر واحد مالی کیست؟",
+   "reply": "بهرام نادری [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "پایگاه داده، جدول departments، رکورد(های) 4"
+   ],
+   "sql": "SELECT id, manager FROM departments WHERE name = 'مالی'",
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "id": "d07",
+   "type": "database",
+   "question": "واحد بازرگانی چند پروژه دارد؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": false,
+   "source_ok": false,
+   "citations": [],
+   "sql": "SELECT COUNT(*) FROM projects WHERE department_id = (SELECT id FROM departments WHERE name = 'بازرگانی')",
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "مدل شواهد را کافی ندانست"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "id": "d08",
+   "type": "joint",
+   "question": "مدیر واحد بازرگانی کیست و سقف هر خرید برای مدیر واحد چقدر است؟",
+   "reply": "کامران فلاح [1] و سقف هر خرید برای مدیر واحد 800 میلیون ریال [2].",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "پایگاه داده، جدول departments",
+    "دستورالعمل خرید.docx، بخش «سقف اختیارات خرید»، جدول 1، ردیف 1 تا 3"
+   ],
+   "sql": "SELECT d.manager FROM departments d WHERE d.name = 'بازرگانی'",
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "id": "d09",
+   "type": "none",
+   "question": "حقوق پایه کارشناس ارشد چقدر است؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": true,
+   "source_ok": null,
+   "citations": [],
+   "sql": null,
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "شاهد مرتبطی پیدا نشد"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "id": "d10",
+   "type": "none",
+   "question": "شرکت چند شعبه در خارج از کشور دارد؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": true,
+   "source_ok": null,
+   "citations": [],
+   "sql": null,
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "شاهد مرتبطی پیدا نشد"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "id": "d11",
+   "type": "none",
+   "question": "پایتخت فرانسه کجاست؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": true,
+   "source_ok": null,
+   "citations": [],
+   "sql": null,
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "شاهد مرتبطی پیدا نشد"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "id": "d12",
+   "type": "none",
+   "question": "مبلغ پاداش پایان سال مدیران چقدر است؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": true,
+   "source_ok": null,
+   "citations": [],
+   "sql": null,
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "شاهد مرتبطی پیدا نشد"
+   ],
+   "seconds": 1.6
+  }
+ ]
+}

@@ -1,0 +1,368 @@
+% Compile with: xelatex report.tex (run three times for the contents lists)
+\documentclass[a4paper,12pt,oneside]{book}
+
+\usepackage{amsmath}
+\usepackage[a4paper,top=40mm,bottom=40mm,outer=25mm,inner=35mm]{geometry}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{fancyvrb}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{tocloft}
+\usepackage{indentfirst}
+\usepackage[unicode=true,hidelinks]{hyperref}
+\usepackage{xepersian}
+
+\settextfont[Path={./font/},BoldFont={IRLotusICEE_Bold.ttf},BoldItalicFont={IRLotusICEE_BoldIranic.ttf},ItalicFont={IRLotusICEE_Iranic.ttf},Scale=1.2]{IRLotusICEE.ttf}
+\setlatintextfont[Path={./font/},BoldFont={LiberationSerif-Bold.ttf},BoldItalicFont={LiberationSerif-BoldItalic.ttf},ItalicFont={LiberationSerif-Italic.ttf}]{LiberationSerif-Regular.ttf}
+\setlatinmonofont[Path={./font/},BoldFont={LiberationMono-Bold.ttf},Scale=0.85]{LiberationMono-Regular.ttf}
+\setdigitfont[Path={./font/},BoldFont={IRLotusICEE_Bold.ttf},ItalicFont={IRLotusICEE_Iranic.ttf},Scale=1.2]{IRLotusICEE.ttf}
+\defpersianfont\titlefont[Path={./font/}]{IRTitr.ttf}
+\font\latintitlefont=cmssbx10 scaled 2000
+
+\newcommand{\reporttitle}{سامانه بازیابی اطلاعات و پاسخ‌گویی هوشمند سازمانی}
+\newcommand{\reportlatintitle}{Organizational Information Retrieval and Question Answering System}
+
+\hypersetup{pdftitle={\reportlatintitle},pdfauthor={Mohammad Mahdi Abedi},pdfsubject={Technical Report}}
+
+\renewcommand{\bibname}{مراجع}
+
+\setstretch{1.5}
+\setlength{\emergencystretch}{3em}
+\renewcommand{\arraystretch}{1.25}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+
+\makeatletter
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.75pt}
+\renewcommand{\chaptermark}[1]{\markboth{\@chapapp~\thechapter:\ #1}{}}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+\makeatother
+
+\newlength\mylenchp
+\newlength\mylenapp
+\renewcommand\cftchappresnum{\chaptername~}
+\renewcommand\cftchapaftersnum{:}
+\settowidth\mylenchp{\cftchapfont\cftchappresnum\cftchapaftersnum}
+\settowidth\mylenapp{\cftchapfont\appendixname~\cftchapaftersnum}
+\addtolength\mylenchp{\cftchapnumwidth}
+\addtolength\mylenapp{\cftchapnumwidth}
+\setlength\cftchapnumwidth{\mylenchp}
+
+\DeclareRobustCommand{\dec}[1]{\beginL#1\endL}
+\newcommand{\en}[1]{\lr{#1}}
+\newcommand{\code}[1]{\lr{\texttt{#1}}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\DefineVerbatimEnvironment{codeblock}{Verbatim}{fontsize=\footnotesize,frame=single,rulecolor=\color{gray!60},framesep=6pt,baselinestretch=1.05}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{35mm}
+{\huge\titlefont \reporttitle\par}
+\vskip 15mm
+{\Large\bfseries گزارش فنی نهایی\par}
+\vskip 4mm
+{\large پاسخ به سؤال اول ارزیابی فنی هوش مصنوعی\par}
+\vfill
+{\large تهیه‌کننده\par}
+\vskip 4mm
+{\Large\bfseries محمد مهدی عابدی\par}
+\vskip 15mm
+{\large آبان ۱۴۰۵\par}
+\vspace*{15mm}
+\end{titlepage}
+
+\clearpage
+\thispagestyle{empty}
+\section*{چکیده}
+
+در این گزارش، طراحی، پیاده‌سازی و ارزیابی سامانه‌ای برای پاسخ‌گویی به پرسش‌های فارسی بر پایه اسناد \en{PDF}، \en{Word} و \en{Excel} و یک پایگاه داده ارائه می‌شود. متن، جدول و تصویر از اسناد استخراج می‌شود، بازیابی به‌صورت ترکیبی انجام می‌گیرد و پرسش‌های مربوط به داده‌های ساخت‌یافته با دستور \en{SQL} فقط‌خواندنی پاسخ داده می‌شوند. هر پاسخ به منبع خود ارجاع می‌دهد و در نبود شواهد کافی، سامانه از پاسخ‌گویی خودداری می‌کند. همه مدل‌ها به‌صورت محلی اجرا می‌شوند.
+
+به دلیل در دسترس نبودن اسناد واقعی، ارزیابی روی مجموعه‌ای ساختگی از یک سازمان فرضی انجام شده است. از ۲۴ پرسش آزمون، ۲۱ پاسخ درست بوده، هر ۵ پرسش بی‌پاسخ به‌درستی رد شده و ۱۴ مورد از ۱۹ پاسخ پرسش‌های دارای پاسخ، به منبع مورد انتظار ارجاع داده‌اند. ضعف اصلی سامانه در پرسش‌هایی است که به پایگاه داده نیاز دارند. به دلیل حجم کم و ساختگی بودن داده، این نتایج را نمی‌توان به اسناد واقعی تعمیم داد.
+
+\paragraph{واژگان کلیدی}
+بازیابی اطلاعات، تولید پاسخ مبتنی بر بازیابی، پرسش‌وپاسخ فارسی، استخراج جدول، تبدیل زبان طبیعی به \en{SQL}
+
+\clearpage
+\pagenumbering{harfi}
+\tableofcontents
+\clearpage
+\listoffigures
+\listoftables
+\clearpage
+\pagenumbering{arabic}
+
+\chapter{مقدمه}\label{ch:intro}
+
+\section{بیان مسئله}
+
+سؤال اول ارزیابی فنی، طراحی و پیاده‌سازی سامانه‌ای را مطالبه می‌کند که بتواند به پرسش‌های کاربران بر اساس اسناد فارسی \en{PDF}، \en{Word} و \en{Excel} و اطلاعات پایگاه داده سازمان پاسخ دهد. اسناد ممکن است شامل متن، جدول و تصویر باشند. این کار با الگوی تولید پاسخ مبتنی بر بازیابی~\cite{rag} انجام شده است.
+
+\section{الزامات و وضعیت پاسخ}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\linewidth}{R{4.3cm} X R{2.6cm}}
+\toprule
+\textbf{الزام} & \textbf{پیاده‌سازی} & \textbf{وضعیت} \\
+\midrule
+استخراج از \en{PDF}، \en{Word} و \en{Excel} شامل متن، جدول و تصویر & \code{rag/ingest.py}؛ خواندن تصویر با مدل بینایی & انجام شده \\
+پردازش، نمایه‌سازی و بازیابی & جست‌وجوی ترکیبی \en{BM25} و برداری با بازرتبه‌بندی & انجام شده \\
+اتصال به پایگاه داده & تولید \en{SQL} با مدل و اجرای فقط‌خواندنی روی \en{SQLite} & انجام شده؛ ضعیف‌ترین بخش \\
+ترکیب اسناد و پایگاه داده & قرار گرفتن هر دو نوع شاهد در یک فهرست شماره‌دار & انجام شده؛ ۱ از ۲ در آزمون \\
+ارجاع به منبع & نام فایل، صفحه، برگه و ردیف، یا شناسه رکورد & انجام شده \\
+مدیریت پرسش‌های بدون پاسخ & آستانه بازرتبه‌بندی، تشخیص مدل و بررسی ارجاع‌ها & ۵ از ۵ در آزمون \\
+\bottomrule
+\end{tabularx}
+\caption{الزامات سؤال و وضعیت هر یک.}\label{tab:req}
+\end{table}
+
+\chapter{معماری و فناوری‌ها}\label{ch:arch}
+
+\section{مسیر پردازش}
+
+شکل~\ref{fig:pipeline} مسیر نمایه‌سازی و پاسخ‌گویی را نشان می‌دهد.
+
+\begin{figure}[H]
+\centering
+\begin{latin}
+\begin{tikzpicture}[
+  box/.style={draw=black!70,fill=black!5,minimum height=15mm,text width=21mm,align=center,font=\footnotesize,inner sep=2pt},
+  arr/.style={-{Stealth[length=2mm]},thick,black!70}]
+  \node[box] (a1) at (12.2,0) {\lr{PDF / Word}\\\lr{Excel}};
+  \node[box] (a2) at (9.15,0) {\rl{متن، جدول}\\\rl{و تصویر}};
+  \node[box] (a3) at (6.1,0) {\rl{قطعه‌بندی با}\\\rl{حفظ سرستون}};
+  \node[box] (a4) at (3.05,0) {\lr{BM25}\\\lr{bge-m3}};
+  \node[box] (a5) at (0,0) {\rl{نمایه}};
+  \draw[arr] (a1) -- (a2); \draw[arr] (a2) -- (a3); \draw[arr] (a3) -- (a4); \draw[arr] (a4) -- (a5);
+
+  \node[box] (b1) at (12.2,-2.5) {\rl{پرسش فارسی}};
+  \node[box] (b2) at (9.15,-2.5) {\rl{بازیابی و}\\\rl{بازرتبه‌بندی}};
+  \node[box] (b3) at (6.1,-2.5) {\rl{تولید \lr{SQL}}\\\rl{فقط‌خواندنی}};
+  \node[box] (b4) at (3.05,-2.5) {\lr{Qwen3-VL}\\\rl{تولید پاسخ}};
+  \node[box] (b5) at (0,-2.5) {\rl{بررسی ارجاع}\\\rl{و عدد}};
+  \draw[arr] (b1) -- (b2); \draw[arr] (b2) -- (b3); \draw[arr] (b3) -- (b4); \draw[arr] (b4) -- (b5);
+\end{tikzpicture}
+\end{latin}
+\caption{مسیر نمایه‌سازی (ردیف بالا) و پاسخ‌گویی (ردیف پایین).}\label{fig:pipeline}
+\end{figure}
+
+\section{مدل‌ها و نرم‌افزار}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\linewidth}{R{3.2cm} X}
+\toprule
+\textbf{کاربرد} & \textbf{مدل} \\
+\midrule
+تولید پاسخ، \en{SQL} و خواندن تصویر & \lr{\texttt{Qwen/Qwen3-VL-8B-Instruct}}~\cite{card-qwen}، کوانتیزه ۴ بیتی روی \en{GPU} \\
+بردار معنایی & \lr{\texttt{BAAI/bge-m3}}~\cite{bgem3}، روی \en{CPU} \\
+بازرتبه‌بندی & \lr{\texttt{BAAI/bge-reranker-v2-m3}}~\cite{cpack}، روی \en{CPU} \\
+\bottomrule
+\end{tabularx}
+\caption{مدل‌های به‌کاررفته.}\label{tab:models}
+\end{table}
+
+\begin{table}[H]
+\centering\small
+\begin{tabular}{r l r l}
+\toprule
+\textbf{بسته} & \textbf{نسخه} & \textbf{بسته} & \textbf{نسخه} \\
+\midrule
+\en{Python} & \en{3.12.15} & \en{pymupdf} & \en{2.1} \\
+\en{torch} & \en{2.11.0} & \en{python-docx} & \en{1.2.0} \\
+\en{transformers} & \en{5.22.2} & \en{openpyxl} & \en{3.1.5} \\
+\en{sentence-transformers} & \en{6.2.0} & \en{gradio} & \en{6.31.0} \\
+\en{bitsandbytes} & \en{0.50.2} & \en{numpy} & \en{2.5.4} \\
+\bottomrule
+\end{tabular}
+\caption{نسخه‌های به‌کاررفته.}\label{tab:versions}
+\end{table}
+
+آزمون‌ها روی سروری با دو پردازنده \en{Intel Xeon Gold 5220R}، ۱ ترابایت حافظه و یک کارت \en{NVIDIA RTX~3060} با ۱۲ گیگابایت حافظه انجام شده است. رابط کاربری با \en{Gradio} ساخته شده است.
+
+\chapter{روش پیاده‌سازی}\label{ch:impl}
+
+\section{استخراج از اسناد}
+
+در فایل‌های \en{PDF} دو مشکل عملی مشاهده شد. نخست، متن استخراج‌شده به‌صورت شکل‌های نمایشی حروف عربی ذخیره شده بود و با هیچ پرسشی تطبیق نمی‌یافت؛ این حروف به شکل استاندارد بازگردانده می‌شوند. دوم، استخراج‌گر جدول، متن راست‌به‌چپ را با ترتیب وارونه نویسه‌ها برمی‌گرداند؛ به همین دلیل متن هر خانه جداگانه و بر اساس مختصات آن خوانده می‌شود.
+
+جدول‌ها در گروه‌های ۱۵ ردیفی قطعه‌بندی می‌شوند و هر قطعه با ردیف سرستون آغاز می‌شود تا مفهوم هر خانه حفظ شود. متن در قطعه‌هایی حدود ۷۰۰ نویسه با ۱۰۰ نویسه همپوشانی تقسیم می‌شود. تصویرهای جاسازی‌شده و صفحه‌های فاقد متن به مدل بینایی داده می‌شوند و نتیجه برای جلوگیری از پردازش دوباره، بر اساس درهم‌سازی تصویر ذخیره می‌شود. فایل‌های \en{Word} شماره صفحه ذخیره نمی‌کنند؛ بنابراین ارجاع این فایل‌ها به عنوان بخش و شماره جدول است.
+
+\section{بازیابی}
+
+نتایج \en{BM25} و جست‌وجوی برداری با روش ادغام رتبه‌ها ترکیب و سپس با مدل بازرتبه‌ساز مرتب می‌شوند. قطعه‌هایی که امتیازشان از آستانه کمتر باشد کنار گذاشته می‌شوند. آستانه \dec{۰٫۰۵} روی پرسش‌های توسعه انتخاب شده است. پیش از جست‌وجو حروف عربی و ارقام یکسان‌سازی می‌شوند.
+
+\section{اتصال به پایگاه داده}
+
+مدل زبانی با دریافت ساختار پایگاه داده یک دستور \en{SELECT} می‌نویسد. از آنجا که خروجی مدل قابل اعتماد نیست، ایمنی به تحلیل متن دستور وابسته نشده است: فایل به‌صورت فقط‌خواندنی باز می‌شود، سازوکار مجوزدهی \en{SQLite} هر عملی جز خواندن جدول‌های کاربر و توابع مجاز را رد می‌کند و اجرای طولانی پس از ۵ ثانیه متوقف می‌شود. برای پیوند نام ستون‌های انگلیسی با پرسش فارسی، یک فایل اختیاری توضیح فارسی جدول‌ها و ستون‌ها در نظر گرفته شده است.
+
+\section{تولید و بررسی پاسخ}
+
+شواهد اسناد و پایگاه داده در یک فهرست شماره‌دار به مدل داده می‌شوند. پیش‌نویس پاسخ در این موارد رد می‌شود: نبود ارجاع، شماره ارجاع نامعتبر، یا وجود عددی که در منابع ذکرشده یا خود پرسش نیامده است. پس از یک تلاش دوباره، در صورت ادامه مشکل، پیام ثابت نبود پاسخ نمایش داده می‌شود. این بررسی فقط عددها را پوشش می‌دهد و درستی نام‌ها و سایر ادعاها را تضمین نمی‌کند.
+
+\chapter{روش ارزیابی}\label{ch:method}
+
+از آنجا که اسناد واقعی در اختیار نبود، یک سازمان ساختگی شامل یک فایل \en{PDF} سه‌صفحه‌ای، یک فایل \en{Word}، یک فایل \en{Excel} دو برگه‌ای و یک پایگاه داده با سه جدول ساخته شد. پرسش‌ها نیز توسط تهیه‌کننده همین داده نوشته شده‌اند و پیش از اجرای مدل تثبیت شدند.
+
+مجموعه شامل ۳۶ پرسش است: ۱۲ پرسش توسعه برای تنظیم آستانه و دستورهای مدل و ۲۴ پرسش آزمون که پس از تثبیت تنظیمات فقط یک بار اجرا شدند. از این تعداد، ۹ پرسش در منابع پاسخی ندارند. پاسخ زمانی درست شمرده می‌شود که عبارت‌های مورد انتظار را در بر داشته باشد و ارجاع زمانی درست است که منبع مورد انتظار در میان منابع ذکرشده باشد. برای پرسش‌های ترکیبی، منبع مورد انتظار پایگاه داده تعریف شده است.
+
+\chapter{نتایج}\label{ch:results}
+
+\section{نتیجه کلی}
+
+\begin{table}[H]
+\centering\small
+\begin{tabular}{r c c c c}
+\toprule
+\textbf{نوع پرسش} & \textbf{تعداد} & \textbf{پاسخ درست} & \textbf{ارجاع درست} & \textbf{میانگین زمان (ثانیه)} \\
+\midrule
+متن \en{PDF} & ۳ & ۳ & ۳ از ۳ & \dec{۴٫۸} \\
+جدول \en{PDF} & ۳ & ۳ & ۲ از ۳ & \dec{۴٫۹} \\
+تصویر \en{PDF} & ۱ & ۱ & ۱ از ۱ & \dec{۳٫۳} \\
+\en{Word} & ۲ & ۲ & ۲ از ۲ & \dec{۳٫۶} \\
+تصویر \en{Word} & ۱ & ۱ & ۱ از ۱ & \dec{۴٫۱} \\
+\en{Excel} & ۳ & ۳ & ۳ از ۳ & \dec{۴٫۸} \\
+پایگاه داده & ۴ & ۲ & ۲ از ۴ & \dec{۴٫۳} \\
+ترکیب سند و پایگاه داده & ۲ & ۱ & ۰ از ۲ & \dec{۸٫۰} \\
+بدون پاسخ در منابع & ۵ & ۵ & --- & \dec{۲٫۷} \\
+\midrule
+\textbf{مجموع} & \textbf{۲۴} & \textbf{۲۱} & \textbf{۱۴ از ۱۹} & \textbf{\dec{۴٫۴}} \\
+\bottomrule
+\end{tabular}
+\caption{نتایج ۲۴ پرسش آزمون (منبع: \code{results/eval\_test.md}).}\label{tab:test}
+\end{table}
+
+روی ۱۲ پرسش توسعه، ۱۱ پاسخ درست و ۷ ارجاع از ۸ درست بود (\code{results/eval\_dev.md}). این پرسش‌ها در تنظیم سامانه به کار رفته‌اند و معیار مستقلی نیستند.
+
+\section{تحلیل خطاها}
+
+\begin{table}[H]
+\centering\small
+\begin{tabularx}{\linewidth}{R{2.6cm} X}
+\toprule
+\textbf{پرسش} & \textbf{علت} \\
+\midrule
+تعداد کارکنان واحد & \en{SQL} درست بود، اما مدل زبانی نتیجه \en{COUNT(*)} را به‌عنوان پاسخ نپذیرفت و اعلام نبود پاسخ کرد. \\
+پروژه متوقف‌شده & مدل مقدار «متوقف شده» را جست‌وجو کرد، در حالی که مقدار ذخیره‌شده «متوقف» است. \\
+مدیر و بودجه واحد & \en{SQL} با اتصال نادرست به جدول پروژه نوشته شد و پاسخ نهایی، نام مدیر را ذکر نکرد. \\
+حق مسکن یک گروه & پاسخ درست بود، اما به \en{SQL} نامرتبطی روی جدول کارکنان ارجاع داد. \\
+گروه شغلی و حق مسکن & پاسخ درست بود، اما فقط به سند ارجاع داد و رکورد پایگاه داده را ذکر نکرد. \\
+\bottomrule
+\end{tabularx}
+\caption{موارد خطا در پرسش‌های آزمون (منبع: \code{results/eval\_test.json}).}\label{tab:errors}
+\end{table}
+
+در خواندن تصویر، مقدارهای عددی هر دو تصویر درست بود، اما واژه «مهلت» در یک عنوان به‌صورت «مهمت» خوانده شد.
+
+\section{نمونه ورودی و خروجی}
+
+\textbf{پرسش:} حق مسکن گروه شغلی سرپرست چقدر است؟
+
+\textbf{پاسخ:} 160 [1] --- \textbf{منبع:} آیین‌نامه مرخصی و مزایا.pdf، صفحه 2، جدول 1، ردیف 1 تا 4
+
+\textbf{پرسش:} پایتخت فرانسه کجاست؟
+
+\textbf{پاسخ:} پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.
+
+\chapter{جمع‌بندی، محدودیت‌ها و پیشنهادها}\label{ch:conclusion}
+
+\section{جمع‌بندی}
+
+سامانه ارائه‌شده همه الزامات سؤال را در یک رابط وب محلی پیاده‌سازی می‌کند. پرسش‌های مبتنی بر سند در آزمون همگی پاسخ درست داشتند و پرسش‌های بی‌پاسخ همگی رد شدند. بخش پایگاه داده و ترکیب آن با اسناد، ضعیف‌ترین قسمت سامانه است.
+
+\section{محدودیت‌ها}\label{sec:limits}
+
+مهم‌ترین محدودیت آن است که اسناد و پرسش‌ها ساختگی‌اند و توسط یک نفر تهیه شده‌اند؛ اسناد نیز کوتاه، تمیز و دارای ساختار ساده‌اند. مجموعه شامل تنها دو تصویر و چهار جدول است. عملکرد سامانه روی اسناد اسکن‌شده واقعی، فایل‌های \en{PDF} با قلم معیوب، جدول‌های ادغام‌شده یا پیچیده و حجم زیاد سند آزموده نشده است. با ۲۴ پرسش آزمون، هر پرسش حدود چهار درصد از نتیجه را تعیین می‌کند.
+
+معیار درستی پاسخ، تطبیق عبارت است و کیفیت نگارش را نمی‌سنجد. بررسی خودکار پاسخ تنها عددها را پوشش می‌دهد. قاعده منع اجرای دستورهای درون سند فقط در دستور مدل آمده و در برابر حمله آزموده نشده است. سامانه مدیریت کاربر و سطح دسترسی ندارد و تنها به \en{SQLite} متصل می‌شود. بارگذاری سند از طریق رابط نیز پیاده‌سازی نشده و نمایه با اسکریپت ساخته می‌شود.
+
+\section{پیشنهادهای توسعه}
+
+نخستین اولویت، بهبود بخش پایگاه داده است: نام‌گذاری ستون‌های شمارشی، ارائه مقدارهای مجاز ستون‌های دسته‌ای به مدل و تفکیک پرسش‌های ترکیبی به زیرپرسش. پس از آن، ارزیابی با اسناد واقعی سازمان و پرسش‌های کاربران واقعی، افزودن کنترل دسترسی، اتصال به سایر پایگاه‌های داده و آزمون مقاومت در برابر دستورهای جاسازی‌شده در اسناد پیشنهاد می‌شود.
+
+\chapter*{مراجع}
+\addcontentsline{toc}{chapter}{مراجع}
+\markboth{مراجع}{}
+
+\begingroup
+\small
+\setstretch{1.2}
+\begin{latin}
+\renewcommand{\chapter}[2]{}
+\begin{thebibliography}{9}
+\bibitem{rag} P. Lewis \textit{et al.}, ``Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks,'' arXiv:2005.11401, 2020.
+\bibitem{bgem3} J. Chen, S. Xiao, P. Zhang, K. Luo, D. Lian, and Z. Liu, ``M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation,'' arXiv:2402.03216, 2024.
+\bibitem{cpack} S. Xiao \textit{et al.}, ``C-Pack: Packed Resources For General Chinese Embeddings,'' arXiv:2309.07597, 2023.
+\bibitem{card-qwen} Qwen, ``Qwen3-VL-8B-Instruct,'' model card, Hugging Face. \url{https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct}
+\end{thebibliography}
+\end{latin}
+\endgroup
+
+\appendix
+\addtocontents{toc}{%
+  \protect\renewcommand\protect\cftchappresnum{\appendixname~}%
+  \protect\setlength{\cftchapnumwidth}{\mylenapp}}
+
+\chapter{راهنمای نصب و اجرا}\label{app:guide}
+
+پیش‌نیازها سیستم‌عامل لینوکس، \en{uv} و \en{Python 3.12} است. راهنمای کامل در \code{README.md} آمده است.
+
+\begin{latin}
+\begin{codeblock}
+bash setup.sh
+.venv/bin/python -m pytest tests -q
+.venv/bin/python -m scripts.build_index
+.venv/bin/python app.py                  # http://127.0.0.1:7861
+
+.venv/bin/python -m scripts.evaluate --split dev
+.venv/bin/python -m scripts.evaluate --split test --floor 0.05
+\end{codeblock}
+\end{latin}
+
+\clearpage
+\begin{latin}
+\thispagestyle{empty}
+\section*{Abstract}
+
+This report presents a system that answers Persian questions from PDF, Word and Excel documents and a database. Text, tables and images are extracted from the documents, retrieval is hybrid, and structured questions are answered through read-only SQL. Each answer cites its sources, and the system declines to answer when the evidence is insufficient. All models run locally.
+
+Real documents were not available, so evaluation used a fictional organization. Of 24 test questions, 21 were answered correctly, all 5 unanswerable questions were correctly declined, and 14 of the 19 answerable questions cited the expected source. The main weakness is questions that need the database. Given the small synthetic data, these results cannot be generalized to real documents.
+
+\paragraph{Keywords}
+Information retrieval, retrieval-augmented generation, Persian question answering, table extraction, text-to-SQL
+
+\begin{titlepage}
+\centering
+\vspace*{35mm}
+{\latintitlefont \reportlatintitle\par}
+\vskip 15mm
+{\Large\bfseries Final Technical Report\par}
+\vskip 4mm
+{\large Response to Question 1 of the AI Technical Assessment\par}
+\vfill
+{\large Prepared by\par}
+\vskip 4mm
+{\Large\bfseries Mohammad Mahdi Abedi\par}
+\vskip 15mm
+{\large November 2026\par}
+\vspace*{15mm}
+\end{titlepage}
+\end{latin}
+
+\end{document}

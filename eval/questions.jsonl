@@ -1,0 +1,36 @@
+{"id":"d01","split":"dev","type":"pdf_text","question":"هر کارمند تمام‌وقت در سال چند روز مرخصی استحقاقی دارد؟","answer":[["26"]],"source":"صفحه 1"}
+{"id":"d02","split":"dev","type":"pdf_table","question":"حق مسکن گروه شغلی سرپرست چقدر است؟","answer":[["160"]],"source":"صفحه 2"}
+{"id":"d03","split":"dev","type":"pdf_image","question":"سقف هزینه روزانه مأموریت داخل استان چقدر است؟","answer":[["3500000"]],"source":"صفحه 3"}
+{"id":"d04","split":"dev","type":"docx","question":"سقف هر خرید برای سرپرست چقدر است؟","answer":[["150"]],"source":"دستورالعمل خرید"}
+{"id":"d05","split":"dev","type":"xlsx","question":"بودجه مصوب ۱۴۰۴ واحد منابع انسانی چقدر است؟","answer":[["7600"]],"source":"بودجه واحدها"}
+{"id":"d06","split":"dev","type":"database","question":"مدیر واحد مالی کیست؟","answer":[["بهرام نادری"]],"source":"پایگاه داده"}
+{"id":"d07","split":"dev","type":"database","question":"واحد بازرگانی چند پروژه دارد؟","answer":[["2"],["دو"]],"source":"پایگاه داده"}
+{"id":"d08","split":"dev","type":"joint","question":"مدیر واحد بازرگانی کیست و سقف هر خرید برای مدیر واحد چقدر است؟","answer":[["کامران فلاح","800"]],"source":"پایگاه داده"}
+{"id":"d09","split":"dev","type":"none","question":"حقوق پایه کارشناس ارشد چقدر است؟","answer":[],"source":""}
+{"id":"d10","split":"dev","type":"none","question":"شرکت چند شعبه در خارج از کشور دارد؟","answer":[],"source":""}
+{"id":"d11","split":"dev","type":"none","question":"پایتخت فرانسه کجاست؟","answer":[],"source":""}
+{"id":"d12","split":"dev","type":"none","question":"مبلغ پاداش پایان سال مدیران چقدر است؟","answer":[],"source":""}
+{"id":"t01","split":"test","type":"pdf_text","question":"چند روز از مرخصی استفاده‌نشده به سال بعد منتقل می‌شود؟","answer":[["9"],["نه روز"]],"source":"صفحه 1"}
+{"id":"t02","split":"test","type":"pdf_text","question":"برای مرخصی استعلاجی بیش از چند روز گواهی پزشک لازم است؟","answer":[["3"],["سه"]],"source":"صفحه 1"}
+{"id":"t03","split":"test","type":"pdf_text","question":"حداکثر چند روز در ماه می‌توان دورکاری کرد؟","answer":[["8"],["هشت"]],"source":"صفحه 1"}
+{"id":"t04","split":"test","type":"pdf_table","question":"بن خواربار کارشناس ارشد چقدر است؟","answer":[["55"]],"source":"صفحه 2"}
+{"id":"t05","split":"test","type":"pdf_table","question":"حق ایاب و ذهاب مدیر واحد چقدر است؟","answer":[["60"]],"source":"صفحه 2"}
+{"id":"t06","split":"test","type":"pdf_table","question":"کدام گروه شغلی حق مسکن ۹۰ میلیون ریال دارد؟","answer":[["کارشناس"]],"source":"صفحه 2"}
+{"id":"t07","split":"test","type":"pdf_image","question":"سقف هزینه روزانه مأموریت خارج استان چقدر است؟","answer":[["5200000"]],"source":"صفحه 3"}
+{"id":"t08","split":"test","type":"docx","question":"خرید بیش از چه مبلغی فقط با مناقصه عمومی انجام می‌شود؟","answer":[["2000"]],"source":"مناقصه"}
+{"id":"t09","split":"test","type":"docx","question":"از چه مبلغی به بالا سه پیش‌فاکتور لازم است؟","answer":[["300"]],"source":"مناقصه"}
+{"id":"t10","split":"test","type":"docx_image","question":"فاکتور تأییدشده حداکثر ظرف چند روز کاری پرداخت می‌شود؟","answer":[["14"]],"source":"پرداخت"}
+{"id":"t11","split":"test","type":"xlsx","question":"واحد فناوری اطلاعات تا شهریور چقدر هزینه کرده است؟","answer":[["9200"]],"source":"بودجه واحدها"}
+{"id":"t12","split":"test","type":"xlsx","question":"طرف قرارداد شماره ق-۱۰۲ کیست؟","answer":[["بهین"]],"source":"قراردادها"}
+{"id":"t13","split":"test","type":"xlsx","question":"تاریخ پایان قرارداد تأمین تجهیزات چیست؟","answer":[["1404/10/15"]],"source":"قراردادها"}
+{"id":"t14","split":"test","type":"database","question":"مدیر واحد فناوری اطلاعات کیست؟","answer":[["نگین رحمانی"]],"source":"پایگاه داده"}
+{"id":"t15","split":"test","type":"database","question":"چند کارمند در واحد فناوری اطلاعات کار می‌کنند؟","answer":[["3"],["سه"]],"source":"پایگاه داده"}
+{"id":"t16","split":"test","type":"database","question":"بودجه پروژه نوسازی مرکز داده چقدر است؟","answer":[["6400"]],"source":"پایگاه داده"}
+{"id":"t17","split":"test","type":"database","question":"پروژه متوقف‌شده شرکت کدام است؟","answer":[["انبار هوشمند"]],"source":"پایگاه داده"}
+{"id":"t18","split":"test","type":"joint","question":"مریم اکبری در چه گروه شغلی است و حق مسکن این گروه چقدر است؟","answer":[["کارشناس ارشد","120"]],"source":"پایگاه داده"}
+{"id":"t19","split":"test","type":"joint","question":"مدیر واحد منابع انسانی کیست و بودجه مصوب این واحد چقدر است؟","answer":[["سارا کیانی","7600"]],"source":"پایگاه داده"}
+{"id":"t20","split":"test","type":"none","question":"بیمه تکمیلی کارکنان را کدام شرکت ارائه می‌دهد؟","answer":[],"source":""}
+{"id":"t21","split":"test","type":"none","question":"سقف وام ضروری کارکنان چقدر است؟","answer":[],"source":""}
+{"id":"t22","split":"test","type":"none","question":"بودجه ۱۴۰۵ واحد مالی چقدر است؟","answer":[],"source":""}
+{"id":"t23","split":"test","type":"none","question":"کارمند شماره ۵۰ چه نامی دارد؟","answer":[],"source":""}
+{"id":"t24","split":"test","type":"none","question":"فرمول شیمیایی آب چیست؟","answer":[],"source":""}

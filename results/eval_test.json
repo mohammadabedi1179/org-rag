@@ -1,0 +1,407 @@
+{
+ "floor": 0.05,
+ "records": [
+  {
+   "id": "t01",
+   "type": "pdf_text",
+   "question": "چند روز از مرخصی استفاده‌نشده به سال بعد منتقل می‌شود؟",
+   "reply": "حداکثر ۹ روز [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "آیین‌نامه مرخصی و مزایا.pdf، صفحه 1"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 4.1
+  },
+  {
+   "id": "t02",
+   "type": "pdf_text",
+   "question": "برای مرخصی استعلاجی بیش از چند روز گواهی پزشک لازم است؟",
+   "reply": "برای مرخصی استعلاجی بیش از ۳ روز، گواهی پزشک لازم است. [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "آیین‌نامه مرخصی و مزایا.pdf، صفحه 1"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 5.8
+  },
+  {
+   "id": "t03",
+   "type": "pdf_text",
+   "question": "حداکثر چند روز در ماه می‌توان دورکاری کرد؟",
+   "reply": "حداکثر ۸ روز در ماه. [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "آیین‌نامه مرخصی و مزایا.pdf، صفحه 1"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "id": "t04",
+   "type": "pdf_table",
+   "question": "بن خواربار کارشناس ارشد چقدر است؟",
+   "reply": "55 [2]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "آیین‌نامه مرخصی و مزایا.pdf، صفحه 2، جدول 1، ردیف 1 تا 4"
+   ],
+   "sql": "SELECT id, full_name FROM employees WHERE job_group = 'کارشناس ارشد'",
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد",
+    "خطای SQL در تلاش 1: not authorized to use function: LIKE"
+   ],
+   "seconds": 6.8
+  },
+  {
+   "id": "t05",
+   "type": "pdf_table",
+   "question": "حق ایاب و ذهاب مدیر واحد چقدر است؟",
+   "reply": "60 [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "آیین‌نامه مرخصی و مزایا.pdf، صفحه 2، جدول 1، ردیف 1 تا 4"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "id": "t06",
+   "type": "pdf_table",
+   "question": "کدام گروه شغلی حق مسکن ۹۰ میلیون ریال دارد؟",
+   "reply": "کارشناس [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": false,
+   "citations": [
+    "پایگاه داده، جدول employees"
+   ],
+   "sql": "SELECT job_group FROM employees WHERE hire_year = 1398 AND id = 1",
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 4.4
+  },
+  {
+   "id": "t07",
+   "type": "pdf_image",
+   "question": "سقف هزینه روزانه مأموریت خارج استان چقدر است؟",
+   "reply": "5200000 ریال [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "آیین‌نامه مرخصی و مزایا.pdf، صفحه 3، تصویر 1"
+   ],
+   "sql": null,
+   "notes": [
+    "4 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "id": "t08",
+   "type": "docx",
+   "question": "خرید بیش از چه مبلغی فقط با مناقصه عمومی انجام می‌شود؟",
+   "reply": "بیش از 2000 میلیون ریال [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "دستورالعمل خرید.docx، بخش «مناقصه»"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "id": "t09",
+   "type": "docx",
+   "question": "از چه مبلغی به بالا سه پیش‌فاکتور لازم است؟",
+   "reply": "300 میلیون ریال [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "دستورالعمل خرید.docx، بخش «مناقصه»"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "id": "t10",
+   "type": "docx_image",
+   "question": "فاکتور تأییدشده حداکثر ظرف چند روز کاری پرداخت می‌شود؟",
+   "reply": "14 روز کاری [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "دستورالعمل خرید.docx، بخش «پرداخت»، تصویر 1"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 4.1
+  },
+  {
+   "id": "t11",
+   "type": "xlsx",
+   "question": "واحد فناوری اطلاعات تا شهریور چقدر هزینه کرده است؟",
+   "reply": "9200 [2]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "بودجه و قراردادها ۱۴۰۴.xlsx، برگه «بودجه واحدها»، ردیف 2 تا 5"
+   ],
+   "sql": "SELECT SUM(budget_million_rial) AS total_budget\nFROM projects\nWHERE department_id = (\n    SELECT id FROM departments WHERE name = 'فناوری اطلاعات'\n)",
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 5.8
+  },
+  {
+   "id": "t12",
+   "type": "xlsx",
+   "question": "طرف قرارداد شماره ق-۱۰۲ کیست؟",
+   "reply": "مؤسسه بهین‌کار [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "بودجه و قراردادها ۱۴۰۴.xlsx، برگه «قراردادها»، ردیف 2 تا 4"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 4.4
+  },
+  {
+   "id": "t13",
+   "type": "xlsx",
+   "question": "تاریخ پایان قرارداد تأمین تجهیزات چیست؟",
+   "reply": "1404/10/15 [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "بودجه و قراردادها ۱۴۰۴.xlsx، برگه «قراردادها»، ردیف 2 تا 4"
+   ],
+   "sql": null,
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "id": "t14",
+   "type": "database",
+   "question": "مدیر واحد فناوری اطلاعات کیست؟",
+   "reply": "نگین رحمانی [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "پایگاه داده، جدول departments، رکورد(های) 1"
+   ],
+   "sql": "SELECT id, manager FROM departments WHERE name = 'فناوری اطلاعات'",
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 5.0
+  },
+  {
+   "id": "t15",
+   "type": "database",
+   "question": "چند کارمند در واحد فناوری اطلاعات کار می‌کنند؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": false,
+   "source_ok": false,
+   "citations": [],
+   "sql": "SELECT COUNT(*) FROM employees WHERE department_id = (SELECT id FROM departments WHERE name = 'فناوری اطلاعات')",
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "مدل شواهد را کافی ندانست"
+   ],
+   "seconds": 4.4
+  },
+  {
+   "id": "t16",
+   "type": "database",
+   "question": "بودجه پروژه نوسازی مرکز داده چقدر است؟",
+   "reply": "6400 میلیون ریال [1]",
+   "found": true,
+   "ok": true,
+   "source_ok": true,
+   "citations": [
+    "پایگاه داده، جدول projects، رکورد(های) 1"
+   ],
+   "sql": "SELECT id, budget_million_rial FROM projects WHERE title = 'نوسازی مرکز داده'",
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 4.9
+  },
+  {
+   "id": "t17",
+   "type": "database",
+   "question": "پروژه متوقف‌شده شرکت کدام است؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": false,
+   "source_ok": false,
+   "citations": [],
+   "sql": "SELECT id, title FROM projects WHERE status = 'متوقف شده'",
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "شاهد مرتبطی پیدا نشد"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "id": "t18",
+   "type": "joint",
+   "question": "مریم اکبری در چه گروه شغلی است و حق مسکن این گروه چقدر است؟",
+   "reply": "گروه شغلی مریم اکبری کارشناس ارشد است و حق مسکن آن 120 است [2].",
+   "found": true,
+   "ok": true,
+   "source_ok": false,
+   "citations": [
+    "آیین‌نامه مرخصی و مزایا.pdf، صفحه 2، جدول 1، ردیف 1 تا 4"
+   ],
+   "sql": "SELECT e.id, e.job_group\nFROM employees e\nWHERE e.full_name = 'مریم اکبری'",
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 6.9
+  },
+  {
+   "id": "t19",
+   "type": "joint",
+   "question": "مدیر واحد منابع انسانی کیست و بودجه مصوب این واحد چقدر است؟",
+   "reply": "مدیر واحد منابع انسانی در شواهد ذکر نشده است. بودجه مصوب واحد منابع انسانی 7600 میلیون ریال است [2].",
+   "found": true,
+   "ok": false,
+   "source_ok": false,
+   "citations": [
+    "بودجه و قراردادها ۱۴۰۴.xlsx، برگه «بودجه واحدها»، ردیف 2 تا 5"
+   ],
+   "sql": "SELECT d.id, d.manager, p.budget_million_rial\nFROM departments d\nJOIN projects p ON d.id = p.department_id\nWHERE d.name = 'منابع انسانی'",
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد"
+   ],
+   "seconds": 9.0
+  },
+  {
+   "id": "t20",
+   "type": "none",
+   "question": "بیمه تکمیلی کارکنان را کدام شرکت ارائه می‌دهد؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": true,
+   "source_ok": null,
+   "citations": [],
+   "sql": null,
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "شاهد مرتبطی پیدا نشد"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "id": "t21",
+   "type": "none",
+   "question": "سقف وام ضروری کارکنان چقدر است؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": true,
+   "source_ok": null,
+   "citations": [],
+   "sql": null,
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "شاهد مرتبطی پیدا نشد"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "id": "t22",
+   "type": "none",
+   "question": "بودجه ۱۴۰۵ واحد مالی چقدر است؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": true,
+   "source_ok": null,
+   "citations": [],
+   "sql": "SELECT budget_million_rial FROM projects WHERE title = 'مالی'",
+   "notes": [
+    "5 قطعه با امتیاز کم کنار گذاشته شد",
+    "مدل شواهد را کافی ندانست"
+   ],
+   "seconds": 4.1
+  },
+  {
+   "id": "t23",
+   "type": "none",
+   "question": "کارمند شماره ۵۰ چه نامی دارد؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": true,
+   "source_ok": null,
+   "citations": [],
+   "sql": "SELECT id, full_name FROM employees WHERE id = 50",
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "شاهد مرتبطی پیدا نشد"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "id": "t24",
+   "type": "none",
+   "question": "فرمول شیمیایی آب چیست؟",
+   "reply": "پاسخ این پرسش در اسناد و پایگاه داده موجود نیست.",
+   "found": false,
+   "ok": true,
+   "source_ok": null,
+   "citations": [],
+   "sql": null,
+   "notes": [
+    "6 قطعه با امتیاز کم کنار گذاشته شد",
+    "شاهد مرتبطی پیدا نشد"
+   ],
+   "seconds": 2.0
+  }
+ ]
+}
